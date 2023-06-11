@@ -1,4 +1,5 @@
-﻿using PlatformaBlogowa.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PlatformaBlogowa.Data;
 using PlatformaBlogowa.Interfaces;
 using PlatformaBlogowa.Models;
 
@@ -22,6 +23,11 @@ namespace PlatformaBlogowa.Services
         public IQueryable<Post> GetPosts() 
         {
             return _context.Posts.AsQueryable();
+        }
+
+        public Post GetPostById(int id)
+        {
+            return _context.Posts.FirstOrDefault(p => p.Id == id);
         }
 
     }

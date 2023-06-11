@@ -13,7 +13,8 @@
         <div class="card-body">
             <h2 class="card-title">@item.Title</h2>
             <p class="card-text">@item.Description</p>
-            <a href="#" class="btn btn-primary">Read More</a>
+            
+            <a class="btn btn-primary" asp-page="/Post" asp-route-id="@item.Id">Read More</a>
         </div>
     </div>
 }

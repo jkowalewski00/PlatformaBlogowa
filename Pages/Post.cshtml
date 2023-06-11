@@ -1,0 +1,16 @@
+﻿@page
+@model PlatformaBlogowa.Pages.PostModel
+@{
+}
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h2 class="card-title">@Model.Post.Title</h2>
+            <p class="card-text">@Model.Post.Description</p>
+            <p class="card-text">Author: @Model.Post.UserName</p>
+            <p class="card-text">Date: @Model.Post.Date.ToString("yyyy-MM-dd")</p>
+        </div>
+    </div>
+    @*<a href="@Url.Action("Index", "Posts")" class="btn btn-primary">Back to Posts</a>*@
+</div>

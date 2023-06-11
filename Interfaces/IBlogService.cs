@@ -7,5 +7,7 @@ namespace PlatformaBlogowa.Interfaces
         public void AddPost(Post post);
 
         public IQueryable<Post> GetPosts();
+
+        public Post GetPostById(int id);
     }
 }
