@@ -21,6 +21,8 @@ namespace PlatformaBlogowa.Models
         [MaxLength(256)]
         public string Description { get; set; }
 
+        public virtual ICollection<Comment>? Comments { get; set; }
+
 
     }
 }

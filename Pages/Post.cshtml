@@ -14,3 +14,38 @@
     </div>
     @*<a href="@Url.Action("Index", "Posts")" class="btn btn-primary">Back to Posts</a>*@
 </div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Add a Comment</h5>
+        <form method="post">
+            <span asp-validation-for="Comment.Description" class="text-danger"></span>
+            <input type="hidden" value="@Model.Post.Id" asp-for="Comment.PostId" />
+            <div class="form-group">
+                <label for="commentText">Your Comment</label>
+                <input type="text" class="form-control" asp-for="Comment.Description" placeholder="Enter your comment">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<h5>Comments</h5>
+@if (Model.Comments.Any())
+{
+    <ul class="list-group">
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="list-group-item">
+                <div>
+                    <p>@comment.Description</p>
+                    <small>Author: @comment.UserId | Date: @comment.CreatedDate.ToString("yyyy-MM-dd") | IP: @comment.Ip</small>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No comments yet.</p>
+}
