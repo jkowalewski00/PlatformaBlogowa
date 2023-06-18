@@ -14,11 +14,13 @@ namespace PlatformaBlogowa.Pages
     {
         public readonly IBlogService _blogService;
         public readonly UserManager<IdentityUser> _userManager;
+        public readonly IConfiguration _configuration;
 
-        public PostModel(IBlogService blogService, UserManager<IdentityUser> userManager) 
+        public PostModel(IBlogService blogService, UserManager<IdentityUser> userManager, IConfiguration configuration) 
         { 
             _blogService = blogService;
             _userManager = userManager; 
+            _configuration = configuration;
         }
 
         public Post Post { get; set; }
@@ -28,13 +30,15 @@ namespace PlatformaBlogowa.Pages
 
         public IQueryable<Comment>? Comments { get; set; }
 
+        public string CurrentUser { get; set; }
+
         public IActionResult OnGetAsync(int id)
         {
             if(id == null && _blogService == null)
             {
                 return NotFound();
             }
-
+            CurrentUser = _userManager.GetUserId(User);
             Post = _blogService.GetPostById(id);
             Comments = _blogService.GetCommentByPostId(id);
 
@@ -55,5 +59,6 @@ namespace PlatformaBlogowa.Pages
             OnGetAsync(Comment.PostId);
             return Page();
         }
+        
     }
 }

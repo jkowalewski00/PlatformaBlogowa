@@ -41,5 +41,11 @@ namespace PlatformaBlogowa.Services
             return _context.Comments.Where(p => p.PostId == postId);    
         }
 
+        public void DeleteComment(int id)
+        {   var comment = _context.Comments.FirstOrDefault(p => p.Id == id);
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+        }
+
     }
 }

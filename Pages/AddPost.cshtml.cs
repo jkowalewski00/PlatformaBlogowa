@@ -23,12 +23,15 @@ namespace PlatformaBlogowa.Pages
         [BindProperty]
         public Post Post { get; set; }
 
+        public IList<Photo>? Photos { get; set; }
+
         public IActionResult OnPost(ClaimsPrincipal user)
         {
             Post.Date = DateTime.Now;
             Post.UserName = _userManager.GetUserName(User);
             Post.UserId = _userManager.GetUserId(User); 
             _blogService.AddPost(Post);
+            
             return Page();
         }
 

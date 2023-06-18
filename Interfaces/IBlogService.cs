@@ -13,5 +13,7 @@ namespace PlatformaBlogowa.Interfaces
         public void AddComment(Comment comment);    
 
         public IQueryable<Comment>? GetCommentByPostId(int id);
+
+        public void DeleteComment(int id);
     }
 }

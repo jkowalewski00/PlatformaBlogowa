@@ -37,10 +37,17 @@
         @foreach (var comment in Model.Comments)
         {
             <li class="list-group-item">
+                <input type="hidden" value="comment.Id"/>
                 <div>
                     <p>@comment.Description</p>
                     <small>Author: @comment.UserId | Date: @comment.CreatedDate.ToString("yyyy-MM-dd") | IP: @comment.Ip</small>
                 </div>
+                @if(comment.UserId == Model.CurrentUser || Model.Post.UserId == Model.CurrentUser)
+                {
+                    <form method="post">
+                        <a class="btn btn-danger" asp-page="/DeleteComment" asp-route-id="@comment.Id">Delete</a>
+                    </form>
+                }     
             </li>
         }
     </ul>
