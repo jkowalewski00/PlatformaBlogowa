@@ -11,6 +11,7 @@
             <p class="card-text">Author: @Model.Post.UserName</p>
             <p class="card-text">Date: @Model.Post.Date.ToString("yyyy-MM-dd")</p>
         </div>
+        <a class="btn btn-primary" asp-page="/PhotosToPost" asp-route-id="@Model.Post.Id">AddPhotos</a>
     </div>
     @*<a href="@Url.Action("Index", "Posts")" class="btn btn-primary">Back to Posts</a>*@
 </div>

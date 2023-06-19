@@ -2,3 +2,47 @@
 @model PlatformaBlogowa.Pages.PhotosToPostModel
 @{
 }
+
+<div class="text-center">
+    <h1 class="display-4">Edit post's images</h1>
+</div>
+
+<div class="container">
+    <div class="mb-3 mt-3">
+        <form method="post">
+            <div class="mb-3">
+                <input type="hidden" value="@Model.tmpId" asp-for="@Model.Photo.PostId" />
+                <label class="form-label">Upload photos</label>
+                <input type="text" asp-for="@Model.Photo.FileName" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h5>Added photos</h5>
+@if(Model.Photos.Any())
+{
+    <ul class="list-group">
+        @foreach (var photo in Model.Photos)
+        {
+            <li class="list-group-item">
+                <input type="hidden" value="comment.Id" />
+                <div>
+                    <img src="@photo.FileName" alt="Alternative text">
+                </div>
+                
+                @*<form method="post">
+                    <a class="btn btn-danger" asp-page="/DeleteComment" asp-route-id="@comment.Id">Delete</a>
+                </form>*@
+                
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No photos yet</p>
+}

@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient<IBlogService, BlogService>();
+builder.Services.AddTransient<IFileUploadService, FileUploadService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

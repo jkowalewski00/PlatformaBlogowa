@@ -11,9 +11,6 @@ namespace PlatformaBlogowa.Models
         [Required]
         public string FileName { get; set; }
 
-        [NotMapped]
-        public IFormFile Photofile { get; set; }
-
         [Required]
         public int PostId { get; set; }
 

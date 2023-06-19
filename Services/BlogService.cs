@@ -38,7 +38,7 @@ namespace PlatformaBlogowa.Services
 
         public IQueryable<Comment> GetCommentByPostId(int postId)
         {
-            return _context.Comments.Where(p => p.PostId == postId);    
+            return _context.Comments.Where(p => p.PostId == postId).AsQueryable();    
         }
 
         public void DeleteComment(int id)
@@ -47,5 +47,22 @@ namespace PlatformaBlogowa.Services
             _context.SaveChanges();
         }
 
+        public void AddPhotoToPost(Photo photo)
+        {
+            _context.Photos.Add(photo);
+            _context.SaveChanges();
+        }
+
+        public IQueryable<Photo> GetPhotosByPostId(int id)
+        {
+            return _context.Photos.AsQueryable().Where(p =>p.PostId == id);
+        }
+
+        public void DeletePhoto(int Id)
+        {
+            var photo = _context.Photos.FirstOrDefault(p => p.Id == Id);
+            _context.Photos.Remove(photo);  
+            _context.SaveChanges();
+        }
     }
 }

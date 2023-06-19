@@ -31,6 +31,7 @@ namespace PlatformaBlogowa.Pages
             }
 
             var post =  await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            
             if (post == null)
             {
                 return NotFound();
