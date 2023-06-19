@@ -32,6 +32,8 @@ namespace PlatformaBlogowa.Pages
 
         public string CurrentUser { get; set; }
 
+        public string Username { get; set; }    
+
         public IActionResult OnGetAsync(int id)
         {
             if(id == null && _blogService == null)
@@ -39,6 +41,7 @@ namespace PlatformaBlogowa.Pages
                 return NotFound();
             }
             CurrentUser = _userManager.GetUserId(User);
+            Username = _userManager.GetUserName(User);
             Post = _blogService.GetPostById(id);
             Comments = _blogService.GetCommentByPostId(id);
 

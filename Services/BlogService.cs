@@ -22,7 +22,7 @@ namespace PlatformaBlogowa.Services
 
         public IQueryable<Post> GetPosts() 
         {
-            return _context.Posts.AsQueryable();
+            return _context.Posts.OrderByDescending(x => x.Date).Take(10).AsQueryable();
         }
 
         public Post GetPostById(int id)

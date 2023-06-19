@@ -31,12 +31,12 @@
             <li class="list-group-item">
                 <input type="hidden" value="comment.Id" />
                 <div>
-                    <img src="@photo.FileName" alt="Alternative text">
+                    <img src="@photo.FileName" alt="Alternative text" style="width:300px;height:200px;">
                 </div>
                 
-                @*<form method="post">
-                    <a class="btn btn-danger" asp-page="/DeleteComment" asp-route-id="@comment.Id">Delete</a>
-                </form>*@
+                <form method="post">
+                    <a class="btn btn-danger" asp-page="/DeletePhotoFromPost" asp-route-id="@photo.Id">Delete</a>
+                </form>
                 
             </li>
         }

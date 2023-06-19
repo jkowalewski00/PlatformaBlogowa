@@ -10,8 +10,13 @@
             <p class="card-text">@Model.Post.Description</p>
             <p class="card-text">Author: @Model.Post.UserName</p>
             <p class="card-text">Date: @Model.Post.Date.ToString("yyyy-MM-dd")</p>
+            @if(Model.Post.UserId == Model.CurrentUser)
+            {
+                <a class="btn btn-primary" asp-page="/EditPost" asp-route-id="@Model.Post.Id">Edit Post</a>
+                <a class="btn btn-primary" asp-page="/PhotosToPost" asp-route-id="@Model.Post.Id">Add Photos</a>
+                <a class="btn btn-danger" asp-page="/DeletePost" asp-route-id="@Model.Post.Id">Delete Post</a>
+            }            
         </div>
-        <a class="btn btn-primary" asp-page="/PhotosToPost" asp-route-id="@Model.Post.Id">AddPhotos</a>
     </div>
     @*<a href="@Url.Action("Index", "Posts")" class="btn btn-primary">Back to Posts</a>*@
 </div>
@@ -43,7 +48,7 @@
                     <p>@comment.Description</p>
                     <small>Author: @comment.UserId | Date: @comment.CreatedDate.ToString("yyyy-MM-dd") | IP: @comment.Ip</small>
                 </div>
-                @if(comment.UserId == Model.CurrentUser || Model.Post.UserId == Model.CurrentUser)
+                @if(comment.UserId == Model.CurrentUser || Model.Post.UserId == Model.CurrentUser || Model.Username == "admin@gmail.com")
                 {
                     <form method="post">
                         <a class="btn btn-danger" asp-page="/DeleteComment" asp-route-id="@comment.Id">Delete</a>

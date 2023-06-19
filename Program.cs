@@ -20,6 +20,11 @@ builder.Services.AddTransient<IBlogService, BlogService>();
 builder.Services.AddTransient<IFileUploadService, FileUploadService>();
 builder.Services.AddRazorPages();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireUserName("admin@gmail.com"));
+});
+
 var app = builder.Build();
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
