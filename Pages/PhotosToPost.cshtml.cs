@@ -38,7 +38,12 @@ namespace PlatformaBlogowa.Pages
         }
 
         public IActionResult OnPostAsync()
-        { 
+        {
+            if (Photo.FileName == null) 
+            {
+                return Redirect("/PhotosToPost?id=" + Photo.PostId.ToString());
+            }
+
             _blogService.AddPhotoToPost(Photo);
             
             OnGet(tmpId);

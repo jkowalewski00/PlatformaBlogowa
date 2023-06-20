@@ -7,6 +7,17 @@
     <div class="card mb-3">
         <div class="card-body">
             <h2 class="card-title">@Model.Post.Title</h2>
+            @if (Model.Photos.Any())
+            {
+                foreach(var photo in Model.Photos)
+                {
+                    <li class="list-group-item">
+                        <div>
+                            <img src="@photo.FileName" alt="Alternative text" style="width:300px;height:200px;" class="center">
+                        </div>
+                    </li>
+                }
+            }
             <p class="card-text">@Model.Post.Description</p>
             <p class="card-text">Author: @Model.Post.UserName</p>
             <p class="card-text">Date: @Model.Post.Date.ToString("yyyy-MM-dd")</p>

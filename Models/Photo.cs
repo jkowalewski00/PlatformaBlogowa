@@ -1,6 +1,5 @@
-﻿using Microsoft.Build.Framework;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace PlatformaBlogowa.Models
 {
@@ -8,7 +7,8 @@ namespace PlatformaBlogowa.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field is requied")]
+        [Display(Name = "URL")]
         public string FileName { get; set; }
 
         [Required]

@@ -27,10 +27,13 @@ namespace PlatformaBlogowa.Pages
 
         public IActionResult OnPost(ClaimsPrincipal user)
         {
-            Post.Date = DateTime.Now;
-            Post.UserName = _userManager.GetUserName(User);
-            Post.UserId = _userManager.GetUserId(User); 
-            _blogService.AddPost(Post);
+            if(Post.Title != null && Post.Description != null)
+            {
+                Post.Date = DateTime.Now;
+                Post.UserName = _userManager.GetUserName(User);
+                Post.UserId = _userManager.GetUserId(User);
+                _blogService.AddPost(Post);
+            } 
             
             return Page();
         }

@@ -6,7 +6,9 @@ namespace PlatformaBlogowa.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Field is required")]
+        [Display(Name = "Description")]
+        [MaxLength(100)]
         public string Description { get; set; }
 
         [Required]

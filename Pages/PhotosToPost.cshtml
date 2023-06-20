@@ -11,6 +11,7 @@
     <div class="mb-3 mt-3">
         <form method="post">
             <div class="mb-3">
+                <span asp-validation-for="@Model.Photo.FileName" class="text-danger"></span><br />
                 <input type="hidden" value="@Model.tmpId" asp-for="@Model.Photo.PostId" />
                 <label class="form-label">Upload photos</label>
                 <input type="text" asp-for="@Model.Photo.FileName" class="form-control" />

@@ -30,6 +30,8 @@ namespace PlatformaBlogowa.Pages
 
         public IQueryable<Comment>? Comments { get; set; }
 
+        public IQueryable<Photo>? Photos { get; set; }
+
         public string CurrentUser { get; set; }
 
         public string Username { get; set; }    
@@ -44,6 +46,7 @@ namespace PlatformaBlogowa.Pages
             Username = _userManager.GetUserName(User);
             Post = _blogService.GetPostById(id);
             Comments = _blogService.GetCommentByPostId(id);
+            Photos = _blogService.GetPhotosByPostId(id);
 
             if(Post == null)
             {
@@ -55,6 +58,10 @@ namespace PlatformaBlogowa.Pages
 
         public IActionResult OnPost(ClaimsIdentity user)
         {
+            if(Comment.Description == null)
+            {
+                return Page();
+            }
             Comment.UserId = _userManager.GetUserId(User);
             Comment.CreatedDate = DateTime.Now;
             Comment.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();

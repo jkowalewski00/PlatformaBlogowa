@@ -12,22 +12,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].UserName)
+                @Html.DisplayNameFor(model => model.PostsListed[0].UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Date)
+                @Html.DisplayNameFor(model => model.PostsListed[0].Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Title)
+                @Html.DisplayNameFor(model => model.PostsListed[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Description)
+                @Html.DisplayNameFor(model => model.PostsListed[0].Description)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Post) {
+@foreach (var item in @Model.PostsListed) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
@@ -45,3 +45,19 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.PostsListed.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.PostsListed.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./PostByUsername"
+   asp-route-pageIndex="@(Model.PostsListed.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./PostByUsername"
+   asp-route-pageIndex="@(Model.PostsListed.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
